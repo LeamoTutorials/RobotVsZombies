@@ -7,9 +7,11 @@ public class RobotJump : MonoBehaviour {
 	bool isRobotJumping = false;
 	bool isRobotDoubleJumping = false;
 	Rigidbody2D rb;
+	Animator animator;
 	// Use this for initialization
 	void Start () {
 		rb = this.transform.parent.GetComponent<Rigidbody2D> ();
+		animator = this.transform.parent.GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -22,6 +24,7 @@ public class RobotJump : MonoBehaviour {
 					isRobotDoubleJumping = true;
 				}
 				isRobotJumping = true;
+				animator.SetBool ("isRobotJumping",true);
 			}
 		}
 	
@@ -31,5 +34,7 @@ public class RobotJump : MonoBehaviour {
 	{
 		isRobotJumping = false;
 		isRobotDoubleJumping = false;
+		animator.SetBool ("isRobotJumping",false);
+
 	}
 }
