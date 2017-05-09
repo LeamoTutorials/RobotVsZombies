@@ -35,6 +35,14 @@ public class RobotJump : MonoBehaviour {
 		isRobotJumping = false;
 		isRobotDoubleJumping = false;
 		animator.SetBool ("isRobotJumping",false);
+	}
 
+	void OnCollisionStay2D(Collision2D coll)
+	{
+		if (coll.gameObject.tag == "Plateform") {
+			transform.parent.parent = coll.transform;
+		} else {
+			transform.parent.parent = null;
+		}
 	}
 }
