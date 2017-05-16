@@ -45,4 +45,11 @@ public class RobotJump : MonoBehaviour {
 			transform.parent.parent = null;
 		}
 	}
+
+	void OnCollisionExit2D(Collision2D coll)
+	{
+		
+			transform.parent.parent = null;
+
+	}
 }
