@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Respawner : MonoBehaviour {
-	public Transform respawner;
+	GameObject respawner;
+	GameObject robotHealthBar;
 
 	// Use this for initialization
 	void Start () {
+		respawner = GameObject.Find("respawner");
+		robotHealthBar = GameObject.Find ("robotHealthBar");
 		
 	}
 	
@@ -20,7 +23,11 @@ public class Respawner : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 		if (coll.gameObject.tag == "Robot") {
-			coll.transform.position = respawner.position;
+			robotHealthBar.GetComponent<HealthManager> ().characterKilled ();
+			coll.transform.position = respawner.transform.position;
+		}
+		if (coll.gameObject.tag == "Zombie") {
+			Destroy (coll.gameObject);
 		}
 	}
 }
